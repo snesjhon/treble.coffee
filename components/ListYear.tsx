@@ -3,6 +3,7 @@ import React from "react";
 import { RSData } from "../interfaces";
 
 function ListYear({ data }: { data: RSData[] }) {
+  console.log(data);
   return (
     <Box>
       <Text fontStyle="italic" fontWeight="500">
