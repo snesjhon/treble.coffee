@@ -1,58 +1,59 @@
-import { Box, Container, Divider, Heading } from "@chakra-ui/core";
-import { GoogleSpreadsheet } from "google-spreadsheet";
-import { GetStaticProps } from "next";
+import { Box, Container, Heading } from "@chakra-ui/core";
+// import { GoogleSpreadsheet } from "google-spreadsheet";
+// import { GetStaticProps } from "next";
 import React from "react";
-import BumpTop50 from "../components/BumpTop50";
-import ListYear from "../components/ListYear";
-import creds from "../creds.json";
-import { RSData } from "../interfaces";
+// import BumpTop50 from "../components/BumpTop50";
+// import ListYear from "../components/ListYear";
+// import creds from "../creds.json";
+// import { RSData } from "../interfaces";
 
-export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const doc = new GoogleSpreadsheet(
-      "1rGkhRNC0iTJGStYLGhoSzmz8feMBhCx7mfH9ELX6OkA"
-    );
-    await doc.useServiceAccountAuth(creds);
-    await doc.loadInfo();
-    const currentSheet = doc.sheetsByIndex[0];
-    const allRows = await currentSheet.getRows();
-    const filteredRows = allRows.reduce<RSData[]>((a: RSData[], c: any) => {
-      const {
-        artist = "",
-        name = "",
-        rs2003 = -1,
-        rs2012 = -1,
-        rs2020 = -1,
-        poster = "",
-        genre = "",
-        overview = "",
-        country = "",
-        label = "",
-        release_date = "",
-      } = c;
+// export const getStaticProps: GetStaticProps = async () => {
+//   try {
+//     const doc = new GoogleSpreadsheet(
+//       "1rGkhRNC0iTJGStYLGhoSzmz8feMBhCx7mfH9ELX6OkA"
+//     );
+//     await doc.useServiceAccountAuth(creds);
+//     await doc.loadInfo();
+//     const currentSheet = doc.sheetsByIndex[0];
+//     const allRows = await currentSheet.getRows();
+//     const filteredRows = allRows.reduce<RSData[]>((a: RSData[], c: any) => {
+//       const {
+//         artist = "",
+//         name = "",
+//         rs2003 = -1,
+//         rs2012 = -1,
+//         rs2020 = -1,
+//         poster = "",
+//         genre = "",
+//         overview = "",
+//         country = "",
+//         label = "",
+//         release_date = "",
+//       } = c;
 
-      a.push({
-        artist,
-        title: name,
-        rs2003: rs2003 === "" ? -1 : rs2003,
-        rs2012: rs2012 === "" ? -1 : rs2012,
-        rs2020: rs2020 === "" ? -1 : rs2020,
-        poster,
-        releaseDate: release_date,
-        genre,
-        overview,
-        country,
-        label,
-      });
-      return a;
-    }, []);
-    return { props: { sheetsData: filteredRows } };
-  } catch (err) {
-    return { props: { errors: err.message } };
-  }
-};
+//       a.push({
+//         artist,
+//         title: name,
+//         rs2003: rs2003 === "" ? -1 : rs2003,
+//         rs2012: rs2012 === "" ? -1 : rs2012,
+//         rs2020: rs2020 === "" ? -1 : rs2020,
+//         poster,
+//         releaseDate: release_date,
+//         genre,
+//         overview,
+//         country,
+//         label,
+//       });
+//       return a;
+//     }, []);
+//     return { props: { sheetsData: filteredRows } };
+//   } catch (err) {
+//     return { props: { errors: err.message } };
+//   }
+// };
 
-function App({ sheetsData }: { sheetsData: RSData[] }) {
+// function App({ sheetsData }: { sheetsData: RSData[] }) {
+function App() {
   return (
     <>
       <Box bgColor="#d32531" pt={8} pb={2} mb={8}>
@@ -66,9 +67,9 @@ function App({ sheetsData }: { sheetsData: RSData[] }) {
         </Container>
       </Box>
       <Container maxW="lg">
-        <BumpTop50 data={sheetsData} />
+        {/* <BumpTop50 data={sheetsData} />
         <Divider my={8} />
-        <ListYear data={sheetsData} />
+        <ListYear data={sheetsData} /> */}
       </Container>
     </>
   );
