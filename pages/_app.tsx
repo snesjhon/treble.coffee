@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import { ChakraProvider, Grid, Spinner } from "@chakra-ui/react";
 import { Router } from "next/router";
 import React, { useState } from "react";
+import { Navigation } from "../components";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false);
@@ -25,15 +26,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
       {loading ? (
-        <Grid placeItems="center" h="100vh">
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
-        </Grid>
+        <>
+          <Navigation />
+          <Grid placeItems="center" h="80vh">
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+            />
+          </Grid>
+        </>
       ) : (
         <Component {...pageProps} />
       )}

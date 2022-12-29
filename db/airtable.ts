@@ -4,7 +4,7 @@ import { FieldProps, TableRecord } from "../interface/types";
 Airtable.configure({ apiKey: process.env.AIRTABLE_API_KEY });
 
 const ndBase = Airtable.base(process.env.AIRTABLE_ND_BASE_ID!);
-const ndTable = (year: number) => ndBase<FieldProps>(`nd-${year}`);
+const ndTable = (year?: string | string[]) => ndBase<FieldProps>(`nd-${year}`);
 
 const pfBase = Airtable.base(process.env.AIRTABLE_PF_BASE_ID!);
 const pfTable = (year?: string | string[]) => pfBase<FieldProps>(`pf-${year}`);

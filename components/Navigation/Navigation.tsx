@@ -104,7 +104,7 @@ export function Navigation() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box>
+    <Box bg="white">
       <Flex
         minH={"60px"}
         py={{ base: 2 }}
